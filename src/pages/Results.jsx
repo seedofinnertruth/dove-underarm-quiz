@@ -11,7 +11,6 @@ export default function Results() {
    const questionLength = questions.length;
    const navigate = useNavigate();
 
-   // Redirect to home if quiz is incomplete
    useEffect(() => {
       const validAnswers = chosenChoices.filter((choice) => choice !== undefined && choice !== null);
       if (validAnswers.length !== questionLength) {
@@ -19,7 +18,6 @@ export default function Results() {
       }
    }, [chosenChoices, navigate]);
 
-   // Calculate which variant has the most votes
    const recommendedProduct = useMemo(() => {
       const variantCounts = { orange: 0, purple: 0, pink: 0 };
 

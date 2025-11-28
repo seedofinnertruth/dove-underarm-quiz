@@ -6,12 +6,15 @@ export default function Button({ children, onClick, className = "" }) {
          onClick={onClick}
          className={`relative px-8 lg:py-4 text-white font-medium text-base uppercase tracking-wide overflow-hidden cursor-pointer ${className}`}
          style={{
-            background: `url(${buttonBg})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
             borderRadius: "50px",
          }}
       >
+         <img
+            src={buttonBg}
+            alt=''
+            className='absolute inset-0 w-full h-full object-cover -z-10'
+            style={{ borderRadius: "50px" }}
+         />
          {children}
       </button>
    );

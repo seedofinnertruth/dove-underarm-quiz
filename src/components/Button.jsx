@@ -4,7 +4,7 @@ export default function Button({ children, onClick, className = "" }) {
    return (
       <button
          onClick={onClick}
-         className={`relative px-8 lg:py-4 text-white font-medium text-base uppercase tracking-wide overflow-hidden cursor-pointer ${className}`}
+         className={`relative px-8 py-4 text-white font-medium text-base uppercase tracking-wide overflow-hidden cursor-pointer ${className}`}
          style={{
             borderRadius: "50px",
          }}

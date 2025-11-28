@@ -21,7 +21,7 @@ export default function Home() {
             <p className='text-xl lg:text-2xl lg:leading-10 font-medium'>
                Answer a few questions to discover the best care for your concerns
             </p>
-            <Button className='mt-4' onClick={handleStartQuiz}>
+            <Button className='mt-4 lg:text-xl' onClick={handleStartQuiz}>
                Start Underarm Quiz
             </Button>
          </div>

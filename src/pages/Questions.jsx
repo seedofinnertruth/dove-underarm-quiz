@@ -49,7 +49,7 @@ export default function Questions() {
 
    return (
       <main className='w-full h-screen flex items-center justify-center'>
-         <div className='max-w-4xl w-full md:w-100 lg:w-180 px-6'>
+         <div className='max-w-4xl w-full md:w-3/4 px-6'>
             {/* Question */}
             <div className='text-center mb-12'>
                <h2 className='text-2xl lg:text-4xl text-primary mb-4 text-center lg:leading-13'>
@@ -79,10 +79,10 @@ export default function Questions() {
             {/* Navigation */}
             <div className='flex justify-center items-center gap-4 mt-8'>
                <ButtonAlt onClick={handlePrevious} disabled={isFirstQuestion}>
-                  Previous
+                  PREVIOUS
                </ButtonAlt>
-               <Button onClick={handleNext} className={`w-35 h-12 lg:h-15 ${!currentAnswer ? "opacity-50" : ""}`}>
-                  Next
+               <Button onClick={handleNext} className={`w-35 h-12 lg:h-15 py-2! ${!currentAnswer ? "opacity-50" : ""}`}>
+                  NEXT
                </Button>
             </div>
          </div>

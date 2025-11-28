@@ -69,7 +69,7 @@ export default function Questions() {
                            isSelected ? "border-secondary! bg-secondary/10" : ""
                         }`}
                      >
-                        <img src={DoveLogo} alt='Dove Logo' className='h-6 brightness-85' />
+                        <img src={DoveLogo} alt='Dove Logo' className='h-5 md:h-6 brightness-85' />
                         <span>{choice.text}</span>
                      </button>
                   );

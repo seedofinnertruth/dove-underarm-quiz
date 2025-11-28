@@ -15,13 +15,13 @@ export default function Home() {
          <div className='flex flex-col items-center space-y-5 text-center max-md:w-full max-lg:w-3/5'>
             <img src={DoveLogo} alt='Dove Logo' className='h-7 lg:h-12 brightness-85' />
             <h1 className='font-medium text-4xl md:text-5xl lg:text-6xl text-primary mb-8'>Hey, Dove Girl!</h1>
-            <p className='text-xl lg:text-2xl lg:leading-10'>
+            <p className='text-lg lg:text-2xl lg:leading-10'>
                Shaved, Waxed, and Lasered recently? Let's find your perfect Dove Deos match!
             </p>
-            <p className='text-xl lg:text-2xl lg:leading-10 font-medium'>
+            <p className='text-lg lg:text-2xl lg:leading-10 font-medium'>
                Answer a few questions to discover the best care for your concerns
             </p>
-            <Button className='mt-4 lg:text-xl' onClick={handleStartQuiz}>
+            <Button className='mt-4 text-sm md:text-base lg:text-xl' onClick={handleStartQuiz}>
                Start Underarm Quiz
             </Button>
          </div>

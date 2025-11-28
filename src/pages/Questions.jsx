@@ -49,7 +49,7 @@ export default function Questions() {
 
    return (
       <main className='w-full h-screen flex items-center justify-center'>
-         <div className='max-w-4xl w-full md:w-100 lg:w-180'>
+         <div className='max-w-4xl w-full md:w-100 lg:w-180 px-6'>
             {/* Question */}
             <div className='text-center mb-12'>
                <h2 className='text-2xl lg:text-4xl text-primary mb-4 text-center lg:leading-13'>
@@ -65,7 +65,7 @@ export default function Questions() {
                      <button
                         key={choice.id}
                         onClick={() => handleChoiceSelect(choice)}
-                        className={`flex border-2 border-transparent hover:border-secondary items-center gap-4 rounded-full transition-all p-4 cursor-pointer text-left text-base lg:text-xl ${
+                        className={`flex max-[450px]:w-full w-4/5 md:w-full mx-auto border-2 border-transparent hover:border-secondary items-center gap-4 rounded-full transition-all p-4 cursor-pointer text-left text-base lg:text-xl ${
                            isSelected ? "border-secondary! bg-secondary/10" : ""
                         }`}
                      >

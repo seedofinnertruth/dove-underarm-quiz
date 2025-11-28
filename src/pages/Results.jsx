@@ -45,12 +45,12 @@ export default function Results() {
       <main className='w-full h-screen flex items-center justify-center px-6 md:px-12'>
          <div className='w-full text-center'>
             <div className='mb-8'>
-               <img src={DoveLogo} alt='Dove Logo' className='h-8 brightness-85 mx-auto mb-12' />
+               <img src={DoveLogo} alt='Dove Logo' className='h-8 brightness-85 mx-auto mb-8' />
 
                <img
                   src={recommendedProduct.header}
                   alt={`${recommendedProduct.variant} Header`}
-                  className='mx-auto mb-12 lg:h-50 w-full md:w-4/5 lg:w-auto'
+                  className='mx-auto mb-6 max-[450px]:w-full w-4/5 max-w-160'
                />
 
                <img

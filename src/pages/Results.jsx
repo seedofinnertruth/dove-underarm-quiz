@@ -50,13 +50,13 @@ export default function Results() {
                <img
                   src={recommendedProduct.header}
                   alt={`${recommendedProduct.variant} Header`}
-                  className='mx-auto mb-10 h-full md:h-55 lg:h-50'
+                  className='mx-auto mb-10 h-full md:h-55 lg:h-45'
                />
 
                <img
                   src={recommendedProduct.product}
                   alt={recommendedProduct.variant}
-                  className='mx-auto mb-12 h-50 md:h-70 lg:h-60'
+                  className='mx-auto mb-12 h-50 md:h-70 lg:h-55'
                />
             </div>
 

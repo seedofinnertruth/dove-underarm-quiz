@@ -30,8 +30,6 @@ export default function Results() {
       });
 
       const topVariant = Object.entries(variantCounts).reduce((a, b) => (b[1] > a[1] ? b : a))[0];
-      console.log(variantCounts);
-      console.log("Top Variant:", topVariant);
 
       return results[topVariant];
    }, [chosenChoices]);

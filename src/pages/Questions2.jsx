@@ -65,7 +65,7 @@ export default function Questions2() {
 
             {/* Question */}
             <div className='text-center mb-12'>
-               <h2 className='text-4xl font-medium text-primary mb-4'>{currentQuestionData.question}</h2>
+               <h2 className='text-3xl lg:text-4xl font-medium text-primary mb-4'>{currentQuestionData.question}</h2>
             </div>
 
             {/* Choices */}
@@ -76,7 +76,7 @@ export default function Questions2() {
                      <button
                         key={choice.id}
                         onClick={() => handleChoiceSelect(choice)}
-                        className={`p-6 border-2 rounded-lg transition-all text-left text-xl ${
+                        className={`px-4 lg:px-6 py-3 border-2 rounded-lg transition-all text-left text-base lg:text-xl ${
                            isSelected
                               ? "border-secondary bg-secondary/10"
                               : "border-gray-300 hover:border-secondary hover:bg-secondary/5"
@@ -93,7 +93,7 @@ export default function Questions2() {
                <button
                   onClick={handlePrevious}
                   disabled={isFirstQuestion}
-                  className={`text-lg ${
+                  className={`lg:text-lg ${
                      isFirstQuestion
                         ? "text-gray-300 cursor-not-allowed"
                         : "text-primary cursor-pointer hover:underline"

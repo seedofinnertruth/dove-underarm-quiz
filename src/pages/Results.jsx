@@ -1,5 +1,5 @@
 import { useQuiz } from "../context/useQuiz";
-import { questions, results } from "../data/questions";
+import { questions, results, patterns } from "../data/questions";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import { useMemo, useEffect } from "react";
@@ -19,11 +19,32 @@ export default function Results() {
    }, [chosenChoices, navigate]);
 
    const recommendedProduct = useMemo(() => {
-      const variantCounts = { orange: 0, purple: 0, pink: 0 };
+      const answers = chosenChoices.map((choice) => choice?.text || "");
+
+      for (const pattern of patterns) {
+         let isMatch = true;
+
+         for (let i = 0; i < pattern.match.length; i++) {
+            const patternValue = pattern.match[i];
+            const answerValue = answers[i];
+
+            if (patternValue !== null && (answerValue === undefined || answerValue !== patternValue)) {
+               isMatch = false;
+               break;
+            }
+         }
+
+         if (isMatch) {
+            return results[pattern.result];
+         }
+      }
+
+      const variantCounts = { orange: 0, purple: 0, pink: 0, sensitive: 0 };
 
       chosenChoices.forEach((choice) => {
          if (choice && choice.variant) {
-            variantCounts[choice.variant]++;
+            const variantKey = choice.variant.toLowerCase();
+            variantCounts[variantKey] = (variantCounts[variantKey] || 0) + 1;
          }
       });
 
@@ -46,13 +67,13 @@ export default function Results() {
                <img
                   src={recommendedProduct.header}
                   alt={`${recommendedProduct.variant} Header`}
-                  className='mx-auto mb-10 h-full md:h-55 lg:h-45'
+                  className='mx-auto mb-10 h-full md:h-35 lg:h-40'
                />
 
                <img
                   src={recommendedProduct.product}
                   alt={recommendedProduct.variant}
-                  className='mx-auto mb-12 h-50 md:h-70 lg:h-55'
+                  className='mx-auto mb-12 h-50 md:h-50 lg:h-50'
                />
             </div>
 

@@ -78,10 +78,13 @@ export default function Questions() {
 
             {/* Navigation */}
             <div className='flex justify-center items-center gap-4 mt-8'>
-               <ButtonAlt onClick={handlePrevious} disabled={isFirstQuestion}>
+               <ButtonAlt className="text-base! py-2" onClick={handlePrevious} disabled={isFirstQuestion}>
                   PREVIOUS
                </ButtonAlt>
-               <Button onClick={handleNext} className={`w-35 h-12 lg:h-15 py-2! ${!currentAnswer ? "opacity-50" : ""}`}>
+               <Button
+                  onClick={handleNext}
+                  className={`w-35 h-12 lg:h-15 py-2! ${!currentAnswer ? "opacity-50" : ""}`}
+               >
                   NEXT
                </Button>
             </div>

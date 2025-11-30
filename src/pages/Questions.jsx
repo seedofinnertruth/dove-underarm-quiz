@@ -1,17 +1,57 @@
 import { useQuiz } from "../context/useQuiz";
-import { questions } from "../data/questions";
+import { questions, patterns } from "../data/questions";
 import DoveLogo from "../assets/images/icon/dove icon.png";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import ButtonAlt from "../components/ButtonAlt";
+import { useMemo } from "react";
 
 export default function Questions() {
-   const { currentQuestion, selectChoice, nextQuestion, previousQuestion, getCurrentAnswer } = useQuiz();
+   const { currentQuestion, chosenChoices, selectChoice, goToQuestion, getCurrentAnswer } = useQuiz();
    const navigate = useNavigate();
 
+   const visibleQuestions = useMemo(() => {
+      const answers = chosenChoices.map((choice) => choice?.text || null);
+      const visible = [true, true, true, true, true];
+
+      for (const pattern of patterns) {
+         let isMatch = true;
+         for (let i = 0; i < Math.min(pattern.match.length, answers.length); i++) {
+            if (pattern.match[i] !== null && answers[i] !== null && answers[i] !== pattern.match[i]) {
+               isMatch = false;
+               break;
+            }
+         }
+         
+         if (isMatch) {
+            pattern.match.forEach((match, index) => {
+               if (match === null && index < visible.length) {
+                  visible[index] = false;
+               }
+            });
+            break;
+         }
+      }
+
+      return visible;
+   }, [chosenChoices]);
+
+   const getNextVisibleQuestion = (fromIndex) => {
+      for (let i = fromIndex + 1; i < questions.length; i++) {
+         if (visibleQuestions[i]) return i;
+      }
+      return -1;
+   };
+
+   const getPreviousVisibleQuestion = (fromIndex) => {
+      for (let i = fromIndex - 1; i >= 0; i--) {
+         if (visibleQuestions[i]) return i;
+      }
+      return -1;
+   };
+
    const currentQuestionData = questions[currentQuestion];
-   const isLastQuestion = currentQuestion === questions.length - 1;
-   const isFirstQuestion = currentQuestion === 0;
+   const isFirstQuestion = getPreviousVisibleQuestion(currentQuestion) === -1;
    const currentAnswer = getCurrentAnswer();
 
    const handleChoiceSelect = (choice) => {
@@ -19,8 +59,9 @@ export default function Questions() {
    };
 
    const handlePrevious = () => {
-      if (!isFirstQuestion) {
-         previousQuestion();
+      const prevQuestion = getPreviousVisibleQuestion(currentQuestion);
+      if (prevQuestion !== -1) {
+         goToQuestion(prevQuestion);
       }
    };
 
@@ -29,12 +70,14 @@ export default function Questions() {
          return;
       }
 
-      if (isLastQuestion) {
+      const nextVisibleQuestion = getNextVisibleQuestion(currentQuestion);
+      
+      if (nextVisibleQuestion === -1) {
          navigate("/results");
          return;
       }
 
-      nextQuestion();
+      goToQuestion(nextVisibleQuestion);
    };
 
    if (!currentQuestionData) {

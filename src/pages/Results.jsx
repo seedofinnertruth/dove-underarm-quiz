@@ -1,5 +1,5 @@
 import { useQuiz } from "../context/useQuiz";
-import { questions, results, patterns } from "../data/questions";
+import { results, patterns } from "../data/questions";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import { useMemo, useEffect } from "react";
@@ -8,12 +8,33 @@ import ButtonAlt from "../components/ButtonAlt";
 
 export default function Results() {
    const { chosenChoices, resetQuiz } = useQuiz();
-   const questionLength = questions.length;
    const navigate = useNavigate();
 
    useEffect(() => {
-      const validAnswers = chosenChoices.filter((choice) => choice !== undefined && choice !== null);
-      if (validAnswers.length !== questionLength) {
+      const answers = chosenChoices.map((choice) => choice?.text || null);
+      let hasMatchingPattern = false;
+
+      for (const pattern of patterns) {
+         let isMatch = true;
+         let requiredAnswers = 0;
+
+         for (let i = 0; i < pattern.match.length; i++) {
+            if (pattern.match[i] !== null) {
+               requiredAnswers++;
+               if (answers[i] === null || answers[i] !== pattern.match[i]) {
+                  isMatch = false;
+                  break;
+               }
+            }
+         }
+
+         if (isMatch && requiredAnswers > 0) {
+            hasMatchingPattern = true;
+            break;
+         }
+      }
+
+      if (!hasMatchingPattern && chosenChoices.filter((c) => c).length === 0) {
          navigate("/");
       }
    }, [chosenChoices, navigate]);

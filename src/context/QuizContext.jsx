@@ -22,6 +22,10 @@ export function QuizProvider({ children }) {
       setCurrentQuestion((prev) => Math.max(0, prev - 1));
    };
 
+   const goToQuestion = (index) => {
+      setCurrentQuestion(index);
+   };
+
    const getCurrentAnswer = () => {
       return chosenChoices[currentQuestion];
    };
@@ -43,6 +47,7 @@ export function QuizProvider({ children }) {
             selectChoice,
             nextQuestion,
             previousQuestion,
+            goToQuestion,
             resetQuiz,
             getTotalScore,
             getCurrentAnswer,

@@ -94,7 +94,7 @@ export default function Results() {
                <img
                   src={recommendedProduct.product}
                   alt={recommendedProduct.variant}
-                  className='mx-auto mb-12 h-50 md:h-50 lg:h-50'
+                  className='mx-auto mb-4 h-50 md:h-55'
                />
             </div>
 

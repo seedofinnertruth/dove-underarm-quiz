@@ -22,7 +22,7 @@ export default function Questions() {
                break;
             }
          }
-         
+
          if (isMatch) {
             pattern.match.forEach((match, index) => {
                if (match === null && index < visible.length) {
@@ -56,6 +56,17 @@ export default function Questions() {
 
    const handleChoiceSelect = (choice) => {
       selectChoice(choice);
+
+      setTimeout(() => {
+         const nextVisibleQuestion = getNextVisibleQuestion(currentQuestion);
+
+         if (nextVisibleQuestion === -1) {
+            navigate("/results");
+            return;
+         }
+
+         goToQuestion(nextVisibleQuestion);
+      }, 300);
    };
 
    const handlePrevious = () => {
@@ -63,21 +74,6 @@ export default function Questions() {
       if (prevQuestion !== -1) {
          goToQuestion(prevQuestion);
       }
-   };
-
-   const handleNext = () => {
-      if (!currentAnswer) {
-         return;
-      }
-
-      const nextVisibleQuestion = getNextVisibleQuestion(currentQuestion);
-      
-      if (nextVisibleQuestion === -1) {
-         navigate("/results");
-         return;
-      }
-
-      goToQuestion(nextVisibleQuestion);
    };
 
    if (!currentQuestionData) {
@@ -120,16 +116,10 @@ export default function Questions() {
             </div>
 
             {/* Navigation */}
-            <div className='flex justify-center items-center gap-4 mt-8'>
-               <ButtonAlt className="text-base! py-2" onClick={handlePrevious} disabled={isFirstQuestion}>
+            <div className='flex justify-center items-center mt-8'>
+               <ButtonAlt className='text-base! py-2' onClick={handlePrevious} disabled={isFirstQuestion}>
                   PREVIOUS
                </ButtonAlt>
-               <Button
-                  onClick={handleNext}
-                  className={`w-35 h-12 lg:h-15 py-2! ${!currentAnswer ? "opacity-50" : ""}`}
-               >
-                  NEXT
-               </Button>
             </div>
          </div>
       </main>

@@ -13,35 +13,35 @@ export default function Questions() {
    const visibleQuestions = useMemo(() => {
       const answers = chosenChoices.map((choice) => choice?.text || null);
       const visible = [true, true, true, true, true];
+      const answeredCount = answers.filter((a) => a !== null).length;
 
-      for (const pattern of patterns) {
-         let isMatch = true;
-         for (let i = 0; i < Math.min(pattern.match.length, answers.length); i++) {
-            if (pattern.match[i] !== null && answers[i] !== null && answers[i] !== pattern.match[i]) {
-               isMatch = false;
-               break;
+      if (answeredCount === 0) return visible;
+
+      const matchingPatterns = patterns.filter((pattern) => {
+         for (let i = 0; i < answeredCount; i++) {
+            if (pattern.match[i] !== null && pattern.match[i] !== answers[i]) {
+               return false;
             }
          }
+         return true;
+      });
 
-         if (isMatch) {
-            pattern.match.forEach((match, index) => {
-               if (match === null && index < visible.length) {
-                  visible[index] = false;
-               }
-            });
-            break;
+      if (matchingPatterns.length === 0) return visible;
+
+      const allAgreeOnNull = (questionIndex) => {
+         return matchingPatterns.every(
+            (pattern) => questionIndex < pattern.match.length && pattern.match[questionIndex] === null
+         );
+      };
+
+      for (let i = answeredCount; i < visible.length; i++) {
+         if (allAgreeOnNull(i)) {
+            visible[i] = false;
          }
       }
 
       return visible;
    }, [chosenChoices]);
-
-   const getNextVisibleQuestion = (fromIndex) => {
-      for (let i = fromIndex + 1; i < questions.length; i++) {
-         if (visibleQuestions[i]) return i;
-      }
-      return -1;
-   };
 
    const getPreviousVisibleQuestion = (fromIndex) => {
       for (let i = fromIndex - 1; i >= 0; i--) {
@@ -58,7 +58,42 @@ export default function Questions() {
       selectChoice(choice);
 
       setTimeout(() => {
-         const nextVisibleQuestion = getNextVisibleQuestion(currentQuestion);
+         const updatedAnswers = [...chosenChoices];
+         updatedAnswers[currentQuestion] = choice;
+         const answers = updatedAnswers.map((c) => c?.text || null);
+         const visible = [true, true, true, true, true];
+         const answeredCount = answers.filter((a) => a !== null).length;
+
+         const matchingPatterns = patterns.filter((pattern) => {
+            for (let i = 0; i < answeredCount; i++) {
+               if (pattern.match[i] !== null && pattern.match[i] !== answers[i]) {
+                  return false;
+               }
+            }
+            return true;
+         });
+
+         if (matchingPatterns.length > 0) {
+            const allAgreeOnNull = (questionIndex) => {
+               return matchingPatterns.every(
+                  (pattern) => questionIndex < pattern.match.length && pattern.match[questionIndex] === null
+               );
+            };
+
+            for (let i = answeredCount; i < visible.length; i++) {
+               if (allAgreeOnNull(i)) {
+                  visible[i] = false;
+               }
+            }
+         }
+
+         let nextVisibleQuestion = -1;
+         for (let i = currentQuestion + 1; i < questions.length; i++) {
+            if (visible[i]) {
+               nextVisibleQuestion = i;
+               break;
+            }
+         }
 
          if (nextVisibleQuestion === -1) {
             navigate("/results");

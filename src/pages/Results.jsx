@@ -78,7 +78,7 @@ export default function Results() {
 
    const handleRetakeQuiz = () => {
       resetQuiz();
-      navigate("/");
+      window.location.href = "https://dove-survey.vercel.app/";
    };
 
    return (

@@ -1,10 +1,12 @@
 import { useQuiz } from "../context/useQuiz";
 import { results, patterns } from "../data/questions";
-import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import { useMemo, useEffect } from "react";
 import DoveLogo from "../assets/images/icon/dove icon.png";
 import ButtonAlt from "../components/ButtonAlt";
+import ShopeeIcon from "../assets/images/icon/shopee.png";
+import LazadaIcon from "../assets/images/icon/lazada.png";
+import TiktokIcon from "../assets/images/icon/tiktokshop.png";
 
 export default function Results() {
    const { chosenChoices, resetQuiz } = useQuiz();
@@ -98,10 +100,23 @@ export default function Results() {
                />
             </div>
 
-            {/* Retake Quiz Button */}
-            <ButtonAlt onClick={handleRetakeQuiz} className='w-45 text-base!'>
-               START OVER
-            </ButtonAlt>
+            <div className='flex items-center justify-center gap-5'>
+               <div className="flex items-center gap-1.5">
+                  <h1 className='font-bold mr-2'>SHOP NOW</h1>
+                  <a target="_blank" href='https://shopee.ph/scp/40869364/eyJjaWQiOjc2MjkyLCJzaWQiOjQwODY3OTc4LCJpc0RyYWZ0IjpmYWxzZX0%3D'>
+                     <img src={ShopeeIcon} alt='Shopee' className='h-12 mx-auto' />
+                  </a>
+                  <a target="_blank" href='https://www.lazada.com.ph/shop/unilever-beauty/custom-1709797926763.htm?wh_weex=true'>
+                     <img src={LazadaIcon} alt='Lazada' className='h-12 mx-auto' />
+                  </a>
+                  <a target="_blank" href='https://www.tiktok.com/@dove.ph?_t=ZS-90BkVtsSaXP&_r=1'>
+                     <img src={TiktokIcon} alt='TikTok' className='h-12 mx-auto' />
+                  </a>
+               </div>
+               <ButtonAlt onClick={handleRetakeQuiz} className='w-45 lg:h-12! text-base!'>
+                  HOME
+               </ButtonAlt>
+            </div>
          </div>
       </main>
    );

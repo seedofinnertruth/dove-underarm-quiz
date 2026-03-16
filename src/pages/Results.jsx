@@ -100,20 +100,26 @@ export default function Results() {
                />
             </div>
 
-            <div className='flex items-center justify-center gap-5'>
-               <div className="flex items-center gap-1.5">
+            <div className='flex flex-col-reverse md:flex-row items-center justify-center gap-5'>
+               <div className='flex items-center gap-1.5'>
                   <h1 className='font-bold mr-2'>SHOP NOW</h1>
-                  <a target="_blank" href='https://shopee.ph/scp/40869364/eyJjaWQiOjc2MjkyLCJzaWQiOjQwODY3OTc4LCJpc0RyYWZ0IjpmYWxzZX0%3D'>
-                     <img src={ShopeeIcon} alt='Shopee' className='h-12 mx-auto' />
+                  <a
+                     target='_blank'
+                     href='https://shopee.ph/scp/40869364/eyJjaWQiOjc2MjkyLCJzaWQiOjQwODY3OTc4LCJpc0RyYWZ0IjpmYWxzZX0%3D'
+                  >
+                     <img src={ShopeeIcon} alt='Shopee' className='h-9 md:h-12 mx-auto' />
                   </a>
-                  <a target="_blank" href='https://www.lazada.com.ph/shop/unilever-beauty/custom-1709797926763.htm?wh_weex=true'>
-                     <img src={LazadaIcon} alt='Lazada' className='h-12 mx-auto' />
+                  <a
+                     target='_blank'
+                     href='https://www.lazada.com.ph/shop/unilever-beauty/custom-1709797926763.htm?wh_weex=true'
+                  >
+                     <img src={LazadaIcon} alt='Lazada' className='h-9 md:h-12 mx-auto' />
                   </a>
-                  <a target="_blank" href='https://www.tiktok.com/@dove.ph?_t=ZS-90BkVtsSaXP&_r=1'>
-                     <img src={TiktokIcon} alt='TikTok' className='h-12 mx-auto' />
+                  <a target='_blank' href='https://www.tiktok.com/@dove.ph?_t=ZS-90BkVtsSaXP&_r=1'>
+                     <img src={TiktokIcon} alt='TikTok' className='h-9 md:h-12 mx-auto' />
                   </a>
                </div>
-               <ButtonAlt onClick={handleRetakeQuiz} className='w-45 lg:h-12! text-base!'>
+               <ButtonAlt onClick={handleRetakeQuiz} className='w-45 lg:h-12! text-sm md:text-base!'>
                   HOME
                </ButtonAlt>
             </div>

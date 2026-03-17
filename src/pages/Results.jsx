@@ -101,7 +101,7 @@ export default function Results() {
             </div>
 
             <div className='flex flex-col-reverse md:flex-row items-center justify-center gap-5'>
-               <div className='flex items-center gap-1.5'>
+               {/* <div className='flex items-center gap-1.5'>
                   <h1 className='font-bold mr-2'>SHOP NOW</h1>
                   <a
                      target='_blank'
@@ -118,7 +118,7 @@ export default function Results() {
                   <a target='_blank' href='https://www.tiktok.com/@dove.ph?_t=ZS-90BkVtsSaXP&_r=1'>
                      <img src={TiktokIcon} alt='TikTok' className='h-9 md:h-12 mx-auto' />
                   </a>
-               </div>
+               </div> */}
                <ButtonAlt onClick={handleRetakeQuiz} className='w-45 lg:h-12! text-sm md:text-base!'>
                   HOME
                </ButtonAlt>

@@ -90,7 +90,7 @@ export default function Results() {
                <img
                   src={recommendedProduct.header}
                   alt={`${recommendedProduct.variant} Header`}
-                  className='mx-auto mb-10 h-full md:h-35 lg:h-40'
+                  className='mx-auto mb-10 h-full md:h-35 lg:h-40 object-contain'
                />
 
                <img
